@@ -22,7 +22,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     maxlength: 255,
     minlength: 5
-  }
+  },
+
+  isAdmin: Boolean
 });
 
 userSchema.methods.generateAuthToken = function() {
@@ -33,7 +35,7 @@ userSchema.methods.generateAuthToken = function() {
   return token;
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 function validateUser(user) {
   const schema = {
@@ -51,7 +53,6 @@ function validateUser(user) {
       .max(255)
       .min(5)
   };
-
   return Joi.validate(user, schema);
 }
 

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
+
 const plantSchema = new mongoose.Schema({
 
   name: {
@@ -18,8 +19,10 @@ const plantSchema = new mongoose.Schema({
     type: String,
     minlength: 3,
     maxlength: 500
+  },
+  image: {
+    type: String,
   }
-  
 });
 
 const Plant = mongoose.model("Plant", plantSchema);
@@ -35,7 +38,8 @@ function validatePlant(plant) {
       .max(10),
     comment: Joi.string()
       .min(3)
-      .max(500)
+      .max(500),
+    image: Joi.string()
   };
   return Joi.validate(plant, schema);
 }
