@@ -6,7 +6,9 @@ const admin = require("../middleware/auth");
 const asyncMiddleware = require("../middleware/async");
 
 //Getting list of all entries
-router.get("/", asyncMiddleware(async (req, res) => {
+router.get(
+  "/",
+  asyncMiddleware(async (req, res) => {
     const calenderEntries = await CalenderEntry.find().sort("date");
     res.send(calenderEntries);
   })

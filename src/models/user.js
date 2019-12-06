@@ -28,14 +28,11 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign(
-    { _id: this._id, isAdmin: this.isAdmin },
-    JWT_SECRET
-  );
+  const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, JWT_SECRET);
   return token;
 };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 function validateUser(user) {
   const schema = {

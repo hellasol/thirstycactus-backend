@@ -7,11 +7,15 @@ const router = express.Router();
 //PAY ATTENTION APP
 
 const { PORT, MONGO_URL } = require("./config");
-  
+
 mongoose
-    .connect(MONGO_URL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-    .then(() => console.info(`connected to mongo`))
-    .catch(err => console.error("Could not connect to MongoDB..."));
+  .connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.info(`connected to mongo`))
+  .catch(err => console.error("Could not connect to MongoDB..."));
 
 const app = express();
 
@@ -24,5 +28,6 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/calenderEntries", require("./routes/calenderEntries"));
 app.use("/api/comments", require("./routes/comments"));
 
-
-module.exports = app.listen(PORT, () => console.info(`listening on port ${PORT}`));
+module.exports = app.listen(PORT, () =>
+  console.info(`listening on port ${PORT}`)
+);

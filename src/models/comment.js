@@ -9,9 +9,9 @@ const commentSchema = new mongoose.Schema({
     required: true
   },
   plantId: {
-      type: String,
-      ref: "Plant",
-      required: true
+    type: String,
+    ref: "Plant",
+    required: true
   }
 });
 
@@ -24,8 +24,7 @@ function validateComment(comment) {
       .max(500)
       .required(),
 
-    plantId: Joi.string()
-        .required()
+    plantId: Joi.string().required()
   };
   return Joi.validate(comment, schema);
 }

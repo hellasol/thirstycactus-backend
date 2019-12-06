@@ -5,18 +5,22 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/auth");
 const asyncMiddleware = require("../middleware/async");
 
-router.get("/", asyncMiddleware(async (req, res) => {
-    const comments = await Comment.find({plantId: req.query.plantId}).sort("comment");
+router.get(
+  "/",
+  asyncMiddleware(async (req, res) => {
+    const comments = await Comment.find({ plantId: req.query.plantId }).sort(
+      "comment"
+    );
     res.send(comments);
   })
 );
 
 router.get("/:id", async (req, res) => {
-    const comment = await Comment.findById(req.params.id);
-    if (!comment)
-      return res.status(404).send("the comment with the given id was not found");
-    res.send(comment);
-  });
+  const comment = await Comment.findById(req.params.id);
+  if (!comment)
+    return res.status(404).send("the comment with the given id was not found");
+  res.send(comment);
+});
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);

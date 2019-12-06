@@ -1,27 +1,25 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
-
 const plantSchema = new mongoose.Schema({
-
   name: {
     type: String,
     required: true,
     minlength: 1,
     maxlength: 50
   },
-  buydate:{
+  buydate: {
     type: String,
-    minlength:6,
-    maxlength: 10 
+    minlength: 6,
+    maxlength: 10
   },
-  comment:{
+  comment: {
     type: String,
     minlength: 3,
     maxlength: 500
   },
   image: {
-    type: String,
+    type: String
   }
 });
 

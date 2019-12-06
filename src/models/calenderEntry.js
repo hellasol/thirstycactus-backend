@@ -13,7 +13,7 @@ const calenderEntrySchema = new mongoose.Schema({
     required: true,
     maxlength: 200,
     minlength: 5
-  },
+  }
 });
 
 const CalenderEntry = mongoose.model("CalenderEntry", calenderEntrySchema);
@@ -27,7 +27,7 @@ function validateCalenderEntry(calenderEntry) {
     description: Joi.string()
       .required()
       .max(200)
-      .min(5),
+      .min(5)
   };
 
   return Joi.validate(calenderEntry, schema);
