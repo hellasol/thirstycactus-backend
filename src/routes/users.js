@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User, validate } = require("../models/user");
 const _ = require("lodash");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const auth = require("../middleware/auth");
 //const { User, validate } = require("../models/user.model");
 
@@ -29,8 +29,8 @@ router.post("/", async (req, res) => {
   if (user) return res.status(400).send("User already registered");
 
   user = new User(_.pick(req.body, ["name", "email", "password"]));
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  const salt = await bcryptjs.genSalt(10);
+  user.password = await bcryptjs.hash(user.password, salt);
 
   await user.save();
 
@@ -39,10 +39,6 @@ router.post("/", async (req, res) => {
     _id: user._id,
     name: user.name,
     email: user.email
-
-    // res
-    //   .header("x-auth-token", token)
-    //   .send(_.pick(user, ["_id", "name", "email"]));
   });
 });
 

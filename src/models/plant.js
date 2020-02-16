@@ -4,7 +4,6 @@ const Joi = require("joi");
 const plantSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
     minlength: 1,
     maxlength: 50
   },
@@ -20,6 +19,12 @@ const plantSchema = new mongoose.Schema({
   },
   image: {
     type: String
+  },
+  label: {
+    type: String
+  },
+  trefleid: {
+    type: String
   }
 });
 
@@ -29,15 +34,16 @@ function validatePlant(plant) {
   const schema = {
     name: Joi.string()
       .min(1)
-      .max(50)
-      .required(),
+      .max(50),
     buydate: Joi.string()
       .min(6)
       .max(10),
     comment: Joi.string()
       .min(3)
       .max(500),
-    image: Joi.string()
+    image: Joi.string(),
+    label: Joi.string(),
+    trefleid: Joi.string(),
   };
   return Joi.validate(plant, schema);
 }
