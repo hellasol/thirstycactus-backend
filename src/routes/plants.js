@@ -7,13 +7,17 @@ const { visionService, trefleService, bucketService } = require("../services");
 const asyncMiddleware = require("../middleware/async");
 const fs = require('fs');
 
+const MB = 1024 * 1024;
 const upload = multer({
   storage: multer.diskStorage({
     destination: "images",
     filename: function(req, file, cb) {
       cb(null, `${Date.now()}-${file.originalname}`);
     }
-  })
+  }),
+  limits: {
+    fileSize: 5 * MB,
+  }
 });
 
 const router = express.Router();
