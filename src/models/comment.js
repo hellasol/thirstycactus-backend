@@ -6,25 +6,22 @@ const commentSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 500,
-    required: true
+    required: true,
   },
   plantId: {
     type: String,
     ref: "Plant",
-    required: true
-  }
+    required: true,
+  },
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
 
 function validateComment(comment) {
   const schema = {
-    comment: Joi.string()
-      .min(5)
-      .max(500)
-      .required(),
+    comment: Joi.string().min(5).max(500).required(),
 
-    plantId: Joi.string().required()
+    plantId: Joi.string().required(),
   };
   return Joi.validate(comment, schema);
 }

@@ -12,10 +12,10 @@ mongoose
   .connect(MONGO_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => console.info(`connected to mongo`))
-  .catch(err => console.error("Could not connect to MongoDB..."));
+  .catch((err) => console.error("Could not connect to MongoDB..."));
 
 const app = express();
 

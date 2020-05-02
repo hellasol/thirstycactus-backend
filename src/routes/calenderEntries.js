@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 
   const calenderEntry = new CalenderEntry({
     date: req.body.date,
-    description: req.body.description
+    description: req.body.description,
   });
 
   await calenderEntry.save();
