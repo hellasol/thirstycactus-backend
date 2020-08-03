@@ -94,7 +94,6 @@ router.post(
 
 //update plant with vision api labels
 router.put("/:id", upload.single("image"), async (req, res) => {
-  console.log(req.body);
   const result = validate(req.body);
   if (result.error)
     return res.status(400).send(result.error.details[0].message);
@@ -124,12 +123,11 @@ router.post(
     if (!plant.label) return res.status(400).send("no label was selected");
 
     let results = await trefleService.getPlantsByName(plant.label);
-    console.log(results.map((r) => r.images));
     results = results.map((result) => ({
       id: result.id,
       commonName: result.common_name,
       scientificName: result.scientific_name,
-      images: result.images ? result.images.map((i) => i.url) : [],
+      images: result.image_url ? [result.image_url] : [],
     }));
     res.send(results);
   })
