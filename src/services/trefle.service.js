@@ -24,6 +24,7 @@ module.exports = {
       throw new Error("no trefle id");
     }
     const trefleData = await this.getPlant(plant.trefleid);
+    console.log(plant, trefleData)
     plant.commonName = trefleData.common_name;
     plant.scientificName = trefleData.scientific_name;
     plant.familyName = trefleData.family_common_name;
